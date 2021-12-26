@@ -6,6 +6,8 @@ try:
     browser = webdriver.Chrome()
     browser.get(link)
 
+
+
     # Ваш код, который заполняет обязательные поля
     field_name = browser.find_element_by_css_selector("input[placeholder='Input your first name']")
     field_name.send_keys('Name')
