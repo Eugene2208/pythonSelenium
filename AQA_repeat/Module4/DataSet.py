@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class PageLinks(Enum):
-    product_page1 = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-    product_page2 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    product_page1 = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+    product_page2 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
 
 
 class ProductName(Enum):
