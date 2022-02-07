@@ -3,7 +3,7 @@ from AQA_repeat.Module4.DataSet import PageLinks, ProductName, ProductPrice
 
 class Environment:
     @staticmethod
-    def get_page_links():
+    def get_page_link():
         return PageLinks.product_page2.value
 
     @staticmethod
