@@ -12,6 +12,7 @@ class LoginPageLocators:
 
 
 class ProductPageLocators:
+    SUCCESS_MESSAGE = None
     PRODUCT_NAME = (By.CSS_SELECTOR, "div h1")
     ADD_TO_BASKET_MESSAGE = (By.CSS_SELECTOR, "div.alertinner > strong")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main p[class='price_color']")

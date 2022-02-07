@@ -1,6 +1,9 @@
 import math
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
 
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from AQA_repeat.Module4.pages.locators import ProductPageLocators, MainPageLocators
 
 
 class BasePage:
@@ -19,6 +22,14 @@ class BasePage:
             return False
         return True
 
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+
+        return False
+
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -32,3 +43,15 @@ class BasePage:
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+
+def go_to_basket_page(browser):
+    login_link = browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+    login_link.click()
+
+
+def go_to_login_page(browser):
+    login_link = browser.find_element(*MainPageLocators.LOGIN_LINK)
+    login_link.click()
+    # alert = self.browser.switch_to.alert
+    # alert.accept()

@@ -21,6 +21,6 @@ class ProductPage(BasePage):
         basket_price = self.browser.find_element(*ProductPageLocators.BASKET_PRICE).text
         assert product_price == basket_price, f"{product_price} not equal {basket_price}"
 
-    def go_to_basket_page(self):
-        login_link = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
-        login_link.click()
+    def should_not_be_success_message(self):
+        assert not self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_MESSAGE), \
+            "Success message is presented"
