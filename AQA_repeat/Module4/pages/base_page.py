@@ -2,7 +2,7 @@ import math
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
-
+from .locators import BasePageLocators
 from AQA_repeat.Module4.pages.locators import ProductPageLocators, MainPageLocators
 
 
@@ -53,14 +53,13 @@ class BasePage:
         except NoAlertPresentException:
             print("No second alert presented")
 
+    def go_to_basket_page(self):
+        login_link = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        login_link.click()
 
-def go_to_basket_page(browser):
-    login_link = browser.find_element(*ProductPageLocators.BASKET_BUTTON)
-    login_link.click()
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        login_link.click()
 
-
-def go_to_login_page(browser):
-    login_link = browser.find_element(*MainPageLocators.LOGIN_LINK)
-    login_link.click()
-    # alert = self.browser.switch_to.alert
-    # alert.accept()
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
