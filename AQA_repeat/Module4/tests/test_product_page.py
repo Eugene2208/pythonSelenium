@@ -28,9 +28,8 @@ class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         link = env.get_page_link()
-        page = ProductPage(browser, link)
-        page.open()
-        login_page = LoginPage(browser, browser.current_url)
+        login_page = LoginPage(browser, link)
+        login_page.open()
         login_page.go_to_login_page()
         login_page.register_new_user(Credential.email1.value, Credential.pass1.value)
         login_page.should_be_authorized_user()

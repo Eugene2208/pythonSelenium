@@ -1,4 +1,6 @@
+import string
 from enum import Enum
+import random
 
 
 class PageLinks(Enum):
@@ -17,5 +19,5 @@ class ProductPrice(Enum):
 
 
 class Credential(Enum):
-    email1 = "someEmail@email.com"
+    email1 = ''.join(random.choice(string.ascii_letters) for i in range(10))+"@email.com"
     pass1 = "SomePass"
