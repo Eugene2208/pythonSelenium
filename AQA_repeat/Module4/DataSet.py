@@ -17,5 +17,5 @@ class ProductPrice(Enum):
 
 
 class Credential(Enum):
-    log1 = "SomeLogin"
+    email1 = "someEmail@email.com"
     pass1 = "SomePass"
