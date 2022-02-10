@@ -16,3 +16,9 @@ class BasketPage(BasePage):
 
     def should_be_product_price(self):
         assert self.is_element_present(*BasketPageLocators.FIRST_PRODUCT_PRICE), "Product price not presented"
+
+    def should_be_empty_basket(self):
+        assert self.is_not_element_present(*BasketPageLocators.ITEMS_TO_BUY_NOW), "There are items in the basket"
+
+    def should_be_message_empty_basket(self):
+        assert self.is_element_present(*BasketPageLocators.MESSAGE_EMPTY_BASKET), "No message that basket is empty"

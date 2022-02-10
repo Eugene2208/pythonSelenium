@@ -29,3 +29,5 @@ class ProductPageLocators:
 class BasketPageLocators:
     FIRST_PRODUCT_PRICE = (By.CSS_SELECTOR, "div[class='basket-items']:nth-of-type(1) div[class='col-sm-1'] p")
     FIRST_PRODUCT_NAME = (By.CSS_SELECTOR, "div[class='basket-items']:nth-of-type(1) h3 a:nth-child(1)")
+    MESSAGE_EMPTY_BASKET = (By.CSS_SELECTOR, "#content_inner")
+    ITEMS_TO_BUY_NOW = (By.CSS_SELECTOR, ".basket-items")
