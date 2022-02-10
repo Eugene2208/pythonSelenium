@@ -1,4 +1,3 @@
-from AQA_repeat.Module4.pages.base_page import go_to_login_page
 from AQA_repeat.Module4.pages.login_page import LoginPage
 from AQA_repeat.Module4.pages.main_page import MainPage
 

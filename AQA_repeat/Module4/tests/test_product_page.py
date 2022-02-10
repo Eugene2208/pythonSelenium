@@ -1,6 +1,7 @@
 import pytest
 
 from AQA_repeat.Module4.Environment import Environment as env
+from AQA_repeat.Module4.pages.login_page import LoginPage
 from AQA_repeat.Module4.pages.product_page import ProductPage
 
 
@@ -47,4 +48,9 @@ def test_guest_should_see_login_link_on_product_page(browser):
 
 
 def test_guest_can_go_to_login_page_from_product_page(browser):
-    pass
+    link = env.get_page_link()
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_login_page()
