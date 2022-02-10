@@ -20,4 +20,4 @@ class ProductPrice(Enum):
 
 class Credential(Enum):
     email1 = ''.join(random.choice(string.ascii_letters) for i in range(10))+"@email.com"
-    pass1 = "SomePass"
+    pass1 = "SomePass1"
