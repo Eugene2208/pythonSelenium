@@ -1,9 +1,52 @@
 import pytest
 
+from AQA_repeat.Module4.DataSet import Credential
 from AQA_repeat.Module4.Environment import Environment as env
 from AQA_repeat.Module4.pages.basket_page import BasketPage
 from AQA_repeat.Module4.pages.login_page import LoginPage
 from AQA_repeat.Module4.pages.product_page import ProductPage
+
+
+@pytest.mark.login_guest
+class TestLoginFromMainPage:
+    def test_guest_should_see_login_link_on_product_page(self, browser):
+        link = env.get_page_link()
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_login_link()
+
+    def test_guest_can_go_to_login_page_from_product_page(self, browser):
+        link = env.get_page_link()
+        page = ProductPage(browser, link)
+        page.open()
+        page.go_to_login_page()
+        login_page = LoginPage(browser, browser.current_url)
+        login_page.should_be_login_page()
+
+
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = env.get_page_link()
+        page = ProductPage(browser, link)
+        page.open()
+        login_page = LoginPage(browser, browser.current_url)
+        login_page.register_new_user(Credential.log1.value, Credential.pass1.value)
+        login_page.should_be_authorized_user()
+
+    @pytest.mark.skip
+    def test_user_cant_see_success_message_after_adding_product_to_basket(self, browser):
+        link = env.get_page_link()
+        prod_page = ProductPage(browser, link)
+        prod_page.open()
+        prod_page.add_to_basket()
+        prod_page.should_not_be_success_message()
+
+    def test_user_cant_see_success_message(self, browser):
+        link = env.get_page_link()
+        prod_page = ProductPage(browser, link)
+        prod_page.open()
+        prod_page.should_not_be_success_message()
 
 
 @pytest.mark.skip
@@ -17,44 +60,12 @@ def test_guest_can_add_product_to_basket(browser, link):
 
 
 @pytest.mark.skip
-def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
-    link = env.get_page_link()
-    prod_page = ProductPage(browser, link)
-    prod_page.open()
-    prod_page.add_to_basket()
-    prod_page.should_not_be_success_message()
-
-
-def test_guest_cant_see_success_message(browser):
-    link = env.get_page_link()
-    prod_page = ProductPage(browser, link)
-    prod_page.open()
-    prod_page.should_not_be_success_message()
-
-
-@pytest.mark.skip
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = env.get_page_link()
     prod_page = ProductPage(browser, link)
     prod_page.open()
     prod_page.add_to_basket()
     prod_page.should_be_disappeared_success_message()
-
-
-def test_guest_should_see_login_link_on_product_page(browser):
-    link = env.get_page_link()
-    page = ProductPage(browser, link)
-    page.open()
-    page.should_be_login_link()
-
-
-def test_guest_can_go_to_login_page_from_product_page(browser):
-    link = env.get_page_link()
-    page = ProductPage(browser, link)
-    page.open()
-    page.go_to_login_page()
-    login_page = LoginPage(browser, browser.current_url)
-    login_page.should_be_login_page()
 
 
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):

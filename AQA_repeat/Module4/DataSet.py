@@ -14,3 +14,8 @@ class ProductName(Enum):
 class ProductPrice(Enum):
     product_name1_GBP = "9,99 £"
     product_name2_GBP = "19,99 £"
+
+
+class Credential(Enum):
+    log1 = "SomeLogin"
+    pass1 = "SomePass"
